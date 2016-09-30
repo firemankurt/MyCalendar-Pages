@@ -1,0 +1,46 @@
+title = "Whats Happening"
+url = "/cal/month/:month?/:year?"
+layout = "default"
+description = "Events that affect  you!"
+is_hidden = 0
+
+[MonthEvents]
+month = "{{ :month }}"
+year = "{{ :year }}"
+color = "red"
+loadstyle = 1
+title_max = 100
+usePermissions = 1
+dayspast = 30
+daysfuture = 120
+raw_data = 0
+==
+<?php
+function onStart()
+{
+    /** Add yellow highlight for current day */
+     // keys must be integers
+    $y = (int) date('Y');
+    $m = (int) date('m');
+    $d = (int) date('d');
+    
+     $this['MyDayProps'] = [
+        $y => [   // Year (must be integer)
+            $m => [    // Month (must be integer)
+                $d => [ // Day (must be integer)
+                    // You can add a CSS class to the day indicator in the calendar.
+                    'class' => 'yellow'
+                ],
+            ],
+        ] 
+    ];
+}
+?>
+==
+<style>
+      table.mycal { width: 1000px;}
+</style>
+
+<div style="padding:5px;">
+    {% component 'MonthEvents' %}
+</div>

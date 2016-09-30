@@ -1,0 +1,21 @@
+title = "My Events"
+url = "/cal/form"
+layout = "default"
+description = "Your very own place to add events to the calendar."
+is_hidden = 0
+
+[EventForm]
+allowpublish = 1
+ckeditor = 1
+bootstrapCDN = 0
+==
+<p> This page requres the <a href="https://octobercms.com/plugin/kurtjensen-passage">Passage Permission and Roles System</a> to protect content from non-members.
+{% if user %}
+{% if can('club_member') %}
+                {% component 'EventForm' %}
+{% else %}
+                <p>Content restricted to club members.  Please contact Admin <a href="mailto:admin@mysite.com">admin@amp;mysite.com</a> if you are a member seeing this message.</p>
+{% endif %}
+{% else %}
+                <p>Content restricted.  Please login to view content.</p>
+{% endif %}
