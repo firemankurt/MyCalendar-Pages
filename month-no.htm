@@ -1,0 +1,13 @@
+title = "Month No Data"
+url = "/cal/month-no/:month?/:year?"
+layout = "default"
+is_hidden = 0
+
+[Month]
+month = "{{ :month }}"
+year = "{{ :year }}"
+color = "red"
+weekstart = 0
+loadstyle = 1
+==
+{% component 'Month' %}

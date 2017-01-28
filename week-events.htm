@@ -1,0 +1,20 @@
+title = "Events This Week"
+url = "/cal/week/:day?/:month?/:year?"
+layout = "default"
+is_hidden = 0
+
+[WeekEvents]
+day = "{{ :day }}"
+month = "{{ :month }}"
+year = "{{ :year }}"
+weekstart = 0
+color = "red"
+loadstyle = 1
+title_max = 100
+usePermissions = 0
+category = "{{ :cat }}"
+dayspast = 20
+daysfuture = 120
+raw_data = 0
+==
+{% component 'WeekEvents' %}

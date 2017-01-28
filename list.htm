@@ -1,0 +1,42 @@
+title = "List"
+url = "/cal/list"
+layout = "default"
+is_hidden = 0
+
+[EvList]
+color = "green"
+loadstyle = 1
+==
+<?php
+function onStart(){
+$this['MyEvents'] = [
+    2017 => [   // Year
+        1 => [    // Month
+            20 => [  // Day
+                [
+                    'txt' => 'October CMS', 
+                    'link' => 'http://octobercms.com/'
+                ], 
+                [
+                    'name' => '<p>Text to show on calendar</p>', 
+                    // You can add properties to anchor tag if needed.
+                    'link' => '#content-confirmation" data-toggle="modal',
+                    // You can add a CSS class tag to the <li> tag for this event.
+                    'class' => 'text-success',
+                    // You can add an on-hover "title" property to the <li> tag for this event.
+                    'title' => 'Just another test. This text shows on hover of event.' 
+                ],
+            ],
+            22 => [
+                [
+                    'txt' => 'My really long and dumb event name',
+                    'title' => 'More about my really long and dumb event named event.'
+                ],
+            ],
+        ],
+    ]
+];
+}
+?>
+==
+{% component 'EvList' events=MyEvents %}

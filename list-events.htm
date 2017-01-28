@@ -1,0 +1,18 @@
+title = "Cal List Events"
+url = "/cal/list-events"
+layout = "default"
+is_hidden = 0
+
+[ListEvents]
+color = "red"
+loadstyle = 1
+title_max = 100
+usePermissions = 0
+category = "{{ :cat }}"
+month = "{{ :month }}"
+year = "{{ :year }}"
+dayspast = 0
+daysfuture = 30
+raw_data = 0
+==
+{% component 'ListEvents' %}

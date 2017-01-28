@@ -7,10 +7,12 @@ is_hidden = 0
 [MonthEvents]
 month = "{{ :month }}"
 year = "{{ :year }}"
+weekstart = 0
 color = "red"
 loadstyle = 1
 title_max = 100
 usePermissions = 1
+category = "{{ :cat }}"
 dayspast = 30
 daysfuture = 120
 raw_data = 0
@@ -24,14 +26,22 @@ function onStart()
     $m = (int) date('m');
     $d = (int) date('d');
     
+    
+    $sundow = ( $d - (int) date('N'));
+    $satdow = $d + ( 6 - (int) date('N'));
+    
+    $highlightArray = range ( $sundow,$satdow);
+    
+    foreach ($highlightArray as $dow){
+    if ($dow>0)
+        $week[$dow] =['class' => 'yellow'];
+    }
+    
+    
+    
      $this['MyDayProps'] = [
         $y => [   // Year (must be integer)
-            $m => [    // Month (must be integer)
-                $d => [ // Day (must be integer)
-                    // You can add a CSS class to the day indicator in the calendar.
-                    'class' => 'yellow'
-                ],
-            ],
+            $m =>$week
         ] 
     ];
 }
@@ -42,5 +52,5 @@ function onStart()
 </style>
 
 <div style="padding:5px;">
-    {% component 'MonthEvents' %}
+    {% component 'MonthEvents'  dayprops=MyDayProps %}
 </div>
